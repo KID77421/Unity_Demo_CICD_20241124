@@ -3,7 +3,7 @@
 on:
   push:
     branches:
-      - main  # 在 main 分支推送時觸發
+      - main  # 在 main 分支推送時觸發 
 
 jobs:
   build-and-deploy:
