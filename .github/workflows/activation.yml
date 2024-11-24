@@ -7,12 +7,15 @@ jobs:
     name: Request manual activation file 🔑
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: webbertakken/unity-request-manual-activation-file@v2
-        id: getManualLicenseFile
-
-      - uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v3
+        
+      - name: Setup Unity
+        uses: game-ci/unity-builder@v2
         with:
-          name: Manual Activation File
+            unityVersion: 6000.0.26f1  # 替換為您專案的 Unity 版本
+            targetPlatform: WebGL     # 指定構建目標為 WebGL
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: WebGL-Build
           path: ${{ steps.getManualLicenseFile.outputs.filePath }}
